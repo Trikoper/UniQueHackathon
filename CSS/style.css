@@ -1,0 +1,46 @@
+/*Lista cu stil universal pentru intreg websitul*/
+:root{
+    --verde-deschis: #658C58;
+    --verde-inchis: #31694E;
+}
+body{
+    margin: 0;
+    padding: 0;
+
+}
+a{
+    color: white;
+    text-decoration: none;
+    justify-content: space-between;
+    margin-right: 15px;
+}
+a:hover{
+    font-weight: bold;
+}
+mark{
+    background-color: whitesmoke;
+    padding: 0.2em 0.6em;
+    border-radius: 10px;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--verde-inchis);
+    padding: 20px;
+}
+.fa{
+    background: none;
+    border: none;
+    color: #31694E;
+    cursor: pointer;
+}
+
+footer{
+    background-color: #31694E;
+    color: white;
+    padding: 4em;
+}
+footer p{
+    margin: 0;
+}

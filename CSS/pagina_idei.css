@@ -1,0 +1,47 @@
+#main-ideas{
+    background-color: #658C58;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.idea-div{
+    background-color: whitesmoke;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 3em 6em 0em 6em;
+}
+.idea-div:last-child{
+    margin-bottom: 100px;
+}
+.idea-source{
+    color: lightslategray;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.user-action{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    color: #31694E;
+    cursor: default;
+}
+
+#pending-ideas{
+    padding: 5em;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
