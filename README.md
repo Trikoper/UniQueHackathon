@@ -13,15 +13,16 @@ Desi acest proiect este focusat pe faculatea de Matematica si Informatica, aseme
 
 # Functionalitati principale
 #Promovarea ideilor proprii
-[1] Studentii pot propune ideile proprii
-[2] Sistem de apreciere, prin care studentii pot sustine ideile
-[3] Lista de idei - ideile cele mai apreciate sunt afisate primele in lista de idei, este important de mentionat ca o idee poate ajunge pe primele locuri, daca au mai mult de 10 apreciere, restul ideilor vor fi plasate intr-o lista mai simpla si compacta
-[4] Doar studentii USM, folosind acelasi sistem ca la Student crd de logare prin IDNP pot intra in website
+1) Studentii pot propune ideile proprii
+2)  Sistem de apreciere, prin care studentii pot sustine ideile
+3)   Lista de idei - ideile cele mai apreciate sunt afisate primele in lista de idei, este important de mentionat ca o idee poate ajunge pe primele locuri, daca au mai mult de 10 apreciere, restul ideilor vor fi plasate intr-o lista mai simpla si compacta
+4)   Doar studentii USM, folosind acelasi sistem ca la Student crd de logare prin IDNP pot intra in website
 #Functii de admin
-[1]Administratorul pot aprecia de asemene ideile publicate de studenti (vor fi marcate prin stea si ridicate la nivel inalt)
-[2]Administratorul poate publica o idee
-[3]
+1) Administratorul pot aprecia de asemene ideile publicate de studenti (vor fi marcate prin stea si ridicate la nivel inalt)
+2) Administratorul poate publica o idee
+3) Administratorul poate crea formulare pentru studenti sau voting polls
 
 # Idei pentru viitor
 [*] Administratorii pot afisa evenimentele, care se apropie pe baza la o idee existenta 
 [*] Administratorii pot vizualiza date statistici cu creatorii si studentii, care au apreciat o idee anumita (Nume, Prenume,Facultate, An, Specialitate)
+[*] Statistici pe baza interactionarii studentilor cu formulare si idei
