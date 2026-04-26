@@ -8,9 +8,14 @@
     <title>Logare Student</title>
 </head>
 <body>
-    <h3>Introduceti codul dvs. de identificare</h3>
-    <form action="#">
-        <input type="number" placeholder="IDNP dvs." maxlength="9" required>
+    <h3>Introduceti emailul universitar dvs.</h3>
+    <div id="error" style="display: none;">
+        <p>Introduceti un eMail valid!</p>
+    </div>
+    <form id="form" action="#">
+        <input id="login" type="email" placeholder="Introduceti poșta electronică academică" required>
+        <input id="submit" type="submit" placeholder="Submit">
     </form>
+    <script src="../JS/logare.js"></script>
 </body>
 </html>
