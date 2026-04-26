@@ -1,0 +1,29 @@
+header { 
+    background: #ffffff; 
+    padding: 15px 25px; 
+    border-bottom: 2px solid #eaeaea;
+    display: flex;
+    justify-content: space-between; /* Împinge elementele la margini */
+    align-items: center;
+}
+
+header .link-sugestii {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+header .btn-nou {
+    text-decoration: none;
+    background-color: #2ecc71; /* Verde, pentru a se diferenția */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: opacity 0.3s;
+}
+
+header .btn-nou:hover {
+    opacity: 0.8;
+}
