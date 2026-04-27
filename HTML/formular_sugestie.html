@@ -17,6 +17,14 @@
         <textarea id="propunere" placeholder="Scrie aici..." required></textarea>
         <button type="submit">Trimite</button>
     </form>
-    <script src="../JS/pagina.js"></script>
+    <div class="ai-response-div hidden">
+        <div class="info-div">
+            <h2>I'm in the middle!</h2>
+            <p id="response-area">This box stays centered even if you scroll.</p>
+            <button id="closeBtn">Mergi la postare</button>
+        </div>
+    </div>
+    <script type="module" src="../JS/mutPagDeLaAI.js"></script>
+    <script type="module" src="../JS/frontend.js"></script>
 </body>
 </html>
