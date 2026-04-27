@@ -1,0 +1,5 @@
+pentru a rula server.js trebuie sa aveti nodejs instalat
+
+npm install
+
+node server.js  - din directorul root
