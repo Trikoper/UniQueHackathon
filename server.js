@@ -10,7 +10,7 @@ app.use(express.json());
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 app.post('/chat', async (req, res) => {
-  const userMessage = `What do you think about this title and description of the book I am reading right now? ${req.body.title}: ${req.body.description}. Do you know it?`; // ← comes from the browser
+  const userMessage = `What do you think about this title and description of the book I am reading right now? ${req.body.title}: ${req.body.description}. Do you know it? Respond in 3 propositions`; // ← comes from the browser
 
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
