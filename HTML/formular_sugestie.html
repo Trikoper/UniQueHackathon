@@ -2,15 +2,21 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Trimite Sugestie</title>
+    <title>Formular</title>
     <link rel="stylesheet" href="../CSS/formular.css">
 </head>
 <body>
     <form id="form-sugestie">
-        <h2>Sugestia Ta</h2>
-        <input type="text" placeholder="Titlul sugestiei" required>
-        <textarea placeholder="Scrie sugestia aici..." required></textarea>
+        <h2>Alege o opțiune</h2>
+        <select id="option">
+            <option value="problema">Problema</option>
+            <option value="initiativa">Initiativa</option>
+            <option value="sugestie">Sugestie</option>
+        </select>
+        <input id="title" type="text" placeholder="Titlul" required>
+        <textarea id="propunere" placeholder="Scrie aici..." required></textarea>
         <button type="submit">Trimite</button>
     </form>
+    <script src="../JS/pagina.js"></script>
 </body>
 </html>

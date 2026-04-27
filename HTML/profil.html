@@ -2,35 +2,81 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Utilizator</title>
     <link rel="stylesheet" href="../CSS/profil.css">
 </head>
 <body>
     <header>
-        <a href="sugestii.html" class="link-sugestii">Pagina Sugestii</a>
-        <a href="pagina_idei.html" class="btn-nou">Pagina Initiative</a>
+        <nav class="navbar">
+            <div class="logo">Profil Student</div>
+            <div class="nav-links">
+                <a href="sugestii.html">Sugestii</a>
+                <a href="initiative.html">Inițiative</a>
+                <a href="probleme.html">Probleme</a>
+            </div>
+        </nav>
     </header>
 
-    <div class="container">
-        <div class="sidebar">
-            <div class="section">
-                <div class="info-item">Nume:</div>
-                <div class="info-val">Petrache</div>
+    <main class="profile-container">
+        <aside class="sidebar">
+            <div class="user-card">
+                <div class="user-avatar">IP</div>
+                <div class="info-group">
+                    <label>Nume</label>
+                    <p>Petrache</p>
+                </div>
+                <div class="info-group">
+                    <label>Prenume</label>
+                    <p>Iulian</p>
+                </div>
+                <div class="info-group">
+                    <label>Grupa</label>
+                    <p>C-211</p>
+                </div>
+                <div class="info-group">
+                    <label>Email</label>
+                    <p>iulian.petrache@usm.md</p>
+                </div>
             </div>
-            <div class="section">
-                <div class="info-item">Prenume:</div>
-                <div class="info-val">Iulian</div>
-            </div>
-            <div class="section">
-                <div class="info-item">Grupa:</div>
-                <div class="info-val">C-211</div>
-            </div>
-            <div class="section">
-                <div class="info-item">Email:</div>
-                <div class="info-val">iulian.petrache@usm.md</div>
-            </div>
-        </div>
-        <div class="main-content"></div>
-    </div>
+        </aside>
+
+        <section class="activity-feed">
+            <h2>Activitatea Mea</h2>
+            <div id="user-posts-container">
+                </div>
+        </section>
+    </main>
+
+    <script src="../JS/pagina.js"></script>
+    <script>
+        // Cod specific pentru pagina de profil pentru a afișa TOATE datele
+        window.addEventListener('DOMContentLoaded', () => {
+            const displayContainer = document.querySelector("#user-posts-container");
+            const keys = ["lista_probleme", "lista_initiative", "lista_sugestii"];
+            
+            keys.forEach(key => {
+                const items = JSON.parse(localStorage.getItem(key) || "[]");
+                items.forEach(item => {
+                    const card = document.createElement("div");
+                    card.classList.add("post-card");
+                    // Adăugăm o etichetă să știm ce tip de postare este
+                    const tip = key.replace("lista_", "").toUpperCase();
+                    
+                    card.innerHTML = `
+                        <span class="tag tag-${tip.toLowerCase()}">${tip}</span>
+                        <h3>${item.titlu}</h3>
+                        <p>${item.text}</p>
+                        <small>Creat la: ${item.data || 'Data necunoscută'}</small>
+                    `;
+                    displayContainer.prepend(card);
+                });
+            });
+
+            if (displayContainer.innerHTML === "") {
+                displayContainer.innerHTML = "<p>Nu ai creat nicio postare încă.</p>";
+            }
+        });
+    </script>
 </body>
 </html>

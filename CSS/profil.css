@@ -1,29 +1,144 @@
-header { 
-    background: #ffffff; 
-    padding: 15px 25px; 
-    border-bottom: 2px solid #eaeaea;
+/* Resetare de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Header & Nav */
+header {
+    background-color: #2c3e50;
+    padding: 1rem 5%;
+    color: white;
+}
+
+.navbar {
     display: flex;
-    justify-content: space-between; /* Împinge elementele la margini */
+    justify-content: space-between;
     align-items: center;
 }
 
-header .link-sugestii {
-    text-decoration: none;
-    color: #3498db;
-    font-weight: bold;
-}
-
-header .btn-nou {
-    text-decoration: none;
-    background-color: #2ecc71; /* Verde, pentru a se diferenția */
+.nav-links a {
     color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-    transition: opacity 0.3s;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-header .btn-nou:hover {
-    opacity: 0.8;
+.nav-links a:hover {
+    color: #3498db;
+}
+
+/* Layout Container */
+.profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* Sidebar (Stânga) */
+.sidebar {
+    flex: 1;
+}
+
+.user-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    background: #3498db;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.info-group {
+    text-align: left;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.info-group label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+}
+
+.info-group p {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Activity Feed (Dreapta) */
+.activity-feed {
+    flex: 2;
+}
+
+.activity-feed h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.post-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+    border-left: 5px solid #3498db;
+}
+
+.post-card h3 {
+    margin-top: 10px;
+    color: #2c3e50;
+}
+
+.post-card p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+}
+
+.tag-problema { background: #e74c3c; }
+.tag-initiativa { background: #2ecc71; }
+.tag-sugestii { background: #f1c40f; }
+
+small {
+    color: #95a5a6;
+}
+
+/* Responsivitate pentru ecrane mici */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
 }
