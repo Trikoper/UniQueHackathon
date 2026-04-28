@@ -27,14 +27,5 @@ export function doRedirectFromForm(form) {
     listaExistenta.push(dateNoi);
     localStorage.setItem(storageKey, JSON.stringify(listaExistenta));
 
-    window.location.href = redirectUrl;
-}
-
-export function redirectToPost(form) {
-    if (form) {
-        form.addEventListener("submit", event => {
-            event.preventDefault();
-            doRedirectFromForm(form);
-        });
-    }
+    window.location.replace(redirectUrl); //sa nu-l poata intoarce inapoi ca sa faca spam la acelasi mesaj
 }
