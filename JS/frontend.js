@@ -12,8 +12,10 @@ const closeBtn = document.getElementById('closeBtn');
 const raspuns = ideaForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  titleText = ideaTitle.value; descText = ideaDesc.value;
+
   responseDiv.classList.remove('hidden');
-  const esteUrat = cenzura(ideaTitle.value, ideaDesc.value);
+  const esteUrat = cenzura(titleText, descText);
 
   if(esteUrat){
     responseEl.textContent = 'Aveti un cuvant urat'; 
@@ -28,7 +30,7 @@ const raspuns = ideaForm.addEventListener("submit", async (e) => {
       // const response = await fetch('http://localhost:3000/chat', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ title: ideaTitle.value, description: ideaDesc.value }), // ← send it here
+      //   body: JSON.stringify({ title: titleText, description: descText }), // ← send it here
       // });
 
       // const data = await response.json();
