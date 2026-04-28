@@ -34,11 +34,8 @@ const raspuns = ideaForm.addEventListener("submit", async (e) => {
       // const data = await response.json();
       // console.log(data.reply); // AI's response  
       // responseEl.textContent = data.reply;
-      // closeBtn.onclick = function() {
-      //   doRedirectFromForm(ideaForm);
-      // };
       closeBtn.onclick = function() {
-        responseDiv.classList.add('hidden');
+        doRedirectFromForm(ideaForm);
       };
   }
 })
