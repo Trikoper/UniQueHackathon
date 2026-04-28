@@ -128,10 +128,35 @@ header {
     color: white;
 }
 
-.tag-problema { background: #e74c3c; }
-.tag-initiativa { background: #2ecc71; }
-.tag-sugestii { background: #f1c40f; }
+.tag-problema, 
+.tag-probleme { 
+    background-color: #e74c3c !important; 
+}
 
+/* Inițiative - VERDE */
+.tag-initiativa, 
+.tag-initiative { 
+    background-color: #2ecc71 !important; 
+}
+
+/* Sugestii - GALBEN/PORTOCALIU */
+.tag-sugestie, 
+.tag-sugestii { 
+    background-color: #f1c40f !important; 
+    color: #2c3e50; /* Text închis pentru lizibilitate pe galben */
+}
+
+/* Stilul de bază pentru tag (asigură-te că e vizibil) */
+.tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white; /* Alb pe fundal colorat */
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
 small {
     color: #95a5a6;
 }
