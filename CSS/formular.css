@@ -137,3 +137,49 @@ button[type="submit"]:active {
 .hidden{
     display: none !important;
 }
+
+@media (max-width: 768px) {
+    #form-sugestie {
+        width: 90%; /* Ocupă mai mult spațiu pe lățime */
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Pentru telefoane mici (max 480px) */
+@media (max-width: 480px) {
+    body {
+        align-items: flex-start; /* Permite scroll-ul natural dacă formularul e înalt */
+        padding-top: 20px;
+    }
+
+    #form-sugestie {
+        width: 95%;
+        padding: 20px;
+        box-shadow: none; /* Putem scoate umbra pe ecrane foarte mici pentru un look plat */
+        border: 1px solid #eee;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    #option, #title, #propunere {
+        padding: 10px;
+        font-size: 0.95rem; /* Text puțin mai mic pentru a economisi spațiu */
+    }
+
+    button[type="submit"] {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .info-div {
+        width: 85%; /* Overlay-ul AI să nu atingă marginile ecranului */
+        padding: 1.5rem;
+    }
+}
