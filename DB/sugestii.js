@@ -5,10 +5,10 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const db = new Database(path.join(__dirname, 'sugestii.db'));
 
-export function getAll() {
+export function getAllSug() {
   return db.prepare('SELECT * FROM sugestii').all();
 }
 
-export function addLike(id) {
+export function addLikeSug(id) {
   return db.prepare('UPDATE sugestii SET likes = likes + 1 WHERE id = ?').run(id);
 }

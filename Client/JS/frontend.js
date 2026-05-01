@@ -18,30 +18,24 @@ const raspuns = ideaForm.addEventListener("submit", async (e) => {
 
   if(esteUrat){
     responseEl.textContent = 'Aveti un cuvant urat'; 
-    closeBtn.onclick = function() {
-      responseDiv.classList.add('hidden');
-    };
+    closeBtn.onclick = function() { responseDiv.classList.add('hidden'); };
     return 0;
   } else {
       console.log(`merge spre executie: ${titleText}, ${descText}, ${ideaType}`)
-      responseEl.textContent = 'Se încarcă...'; // show while waiting
+      responseEl.textContent = 'Se încarcă...'; 
 
       //vectorizare
-      const vector1 = await fetch('http://localhost:3000/vectorize', { 
+      const vector = await fetch('http://localhost:3000/vectorize', { 
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }, // ← add this
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           title: titleText, 
           description: descText,
-          type : ideaType,
+          ideaType : ideaType,
         })
-      });
-      console.log(vector1);
+      }); 
 
-      const data = await vector.json();
-      data.top3.forEach(idea => {
-        console.log(idea.title, idea.similarityScore);
-      });
+      
 
       //extragere din DB cele mai asemanatoare idei prin vectorizare
 

@@ -13,14 +13,14 @@ app.use(express.json());
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY }); //env file
 
-
 //Functie de determinare a similaritatii vectorilor
-    function cosineSimilarity(a, b) {
-    const dot = a.reduce((sum, val, i) => sum + val * b[i], 0);
-    const magA = Math.sqrt(a.reduce((sum, val) => sum + val * val, 0));
-    const magB = Math.sqrt(b.reduce((sum, val) => sum + val * val, 0));
-    return dot / (magA * magB);
-    }
+  function cosineSimilarity(a, b) {
+  const dot = a.reduce((sum, val, i) => sum + val * b[i], 0);
+  const magA = Math.sqrt(a.reduce((sum, val) => sum + val * val, 0));
+  const magB = Math.sqrt(b.reduce((sum, val) => sum + val * val, 0));
+  return dot / (magA * magB);
+  }
+
 //functie de vectorizare
 const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
 async function vectorize(text) {
@@ -37,41 +37,11 @@ app.post('/vectorize', async (req, res) => {
     let tip = req.body.ideaType.toLowerCase();
 
     //1.Vectorizare idee
-    const newVector = await vectorize(text);
+    const newVector = await vectorize(text); //Inputul vectorizat
+    
 
-    // 2. Load all existing vectors from SQLite and compare
-    const ideas = db.prepare(`SELECT * FROM ../DB/${ideas}`).all();
-    let mostSimilar = null;
-    let highestScore = 0;
-    let scores = [];
-
-    //Intru array punem toate ideile
-    for (const idea of ideas) {
-      const vec = JSON.parse(idea.vector);
-      const score = cosineSimilarity(newVector, vec);
-      scores.push({ idea, score });
-    }
-
-    //Luam din array 3 cele mai asemanatoare
-    const top3 = scores
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
-
-    //3 .Salvare idea noua
-    db.prepare(`INSERT INTO ${tip}(title, description, vector) VALUES (?, ?, ?)`)
-    .run(title, description, JSON.stringify(newVector));
-
-    //Raspuns spre front-end
-    res.json({
-      top3: top3.map(entry => ({
-        title: entry.idea.title,
-        description: entry.idea.description,
-        similarityScore: entry.score
-      }))
-    });
-    //res.json({ vector: vectorNou }); // ← wrap in object, not raw array
   } catch (err) {
-    console.error('VECTORIZE ERROR:', err); // ← this will show the real problem
+    console.error('VECTORIZE ERROR:', err); 
     res.status(500).json({ error: err.message });
   }
 });
@@ -101,17 +71,39 @@ app.post('/chat', async (req, res) => {
 });
 
 //Sorin tu icepi aici
-import { getAll, addLike } from '../DB/sugestii.js';
+import { getAllSug, addLikeSug } from '../DB/sugestii.js';
+import { getAllProb, addLikeProb } from '../DB/problema.js';
+import { getAllInit, addLikeInit } from '../DB/initiativa.js';
 
 // Get all sugestii
 app.get('/api/sugestii', (req, res) => {
-  const rows = getAll();
+  const rows = getAllSug();
+  res.json(rows);
+});
+
+app.get('/api/problema', (req, res) => {
+  const rows = getAllProb();
+  res.json(rows);
+});
+
+app.get('/api/initiativa', (req, res) => {
+  const rows = getAllInit();
   res.json(rows);
 });
 
 // Like a sugestie
 app.post('/api/sugestii/:id/like', (req, res) => {
-  addLike(req.params.id);
+  addLikeSug(req.params.id);
+  res.json({ success: true });
+});
+
+app.post('/api/problema/:id/like', (req, res) => {
+  addLikeProb(req.params.id);
+  res.json({ success: true });
+});
+
+app.post('/api/initiativa/:id/like', (req, res) => {
+  addLikeInit(req.params.id);
   res.json({ success: true });
 });
 
