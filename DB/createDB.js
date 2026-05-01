@@ -4,8 +4,8 @@ import * as sqliteVec from 'sqlite-vec';
 
 const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
 
-const title = 'Donatie';
-const description = 'o binefacere';
+const title = 'Discuții deschise"';
+const description = 'Se organizează o discuție deschisă cu partenerii universității, discuție în care veți putea da întrebări, primi răspunsuri și descoperi lucruri noi';
 const tip = 'initiativa';
 
 async function vectorize(text) {
@@ -33,4 +33,4 @@ db.exec(`
 const embedding = new Float32Array(vector);
 
 db.prepare(`INSERT INTO ${tip} (title, description, likes, embedding) VALUES (?, ?, ?, ?)`)
-  .run(title, description, 8, embedding);
+  .run(title, description, 7, embedding);
