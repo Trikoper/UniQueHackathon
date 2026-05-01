@@ -1,3 +1,6 @@
+ //COMENZI CA SA VEZI CUM MERGE TOT asemanatoare
+ //DUPA STERGI
+
  import { pipeline } from '@xenova/transformers';
  // Compare two vectors → number between 0 and 1
     function cosineSimilarity(a, b) {
