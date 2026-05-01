@@ -1,6 +1,5 @@
 import { doRedirectFromForm } from './mutPagDeLaAI.js'
 import { cenzura } from './cenzura.js';
-
 const ideaTitle = document.getElementById('title');
 const ideaOption = document.getElementById('option');
 const ideaDesc = document.getElementById('propunere');
@@ -12,7 +11,7 @@ const closeBtn = document.getElementById('closeBtn');
 const raspuns = ideaForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const titleText = ideaTitle.value.toLowerCase(); const descText = ideaDesc.value.toLowerCase();
+  const titleText = ideaTitle.value.toLowerCase(); const descText = ideaDesc.value.toLowerCase(); const ideaType = ideaOption.value.toLowerCase();
 
   responseDiv.classList.remove('hidden');
   const esteUrat = cenzura(titleText, descText);
@@ -24,7 +23,7 @@ const raspuns = ideaForm.addEventListener("submit", async (e) => {
     };
     return 0;
   } else {
-      console.log("merge spre executie")
+      console.log(`merge spre executie: ${titleText}, ${descText}, ${ideaType}`)
       responseEl.textContent = 'Se încarcă...'; // show while waiting
 
       //vectorizare
@@ -33,11 +32,16 @@ const raspuns = ideaForm.addEventListener("submit", async (e) => {
         headers: { 'Content-Type': 'application/json' }, // ← add this
         body: JSON.stringify({ 
           title: titleText, 
-          description: descText
+          description: descText,
+          type : ideaType,
         })
       });
-
       console.log(vector1);
+
+      const data = await vector.json();
+      data.top3.forEach(idea => {
+        console.log(idea.title, idea.similarityScore);
+      });
 
       //extragere din DB cele mai asemanatoare idei prin vectorizare
 

@@ -1,8 +1,11 @@
+import Database from 'better-sqlite3';
+import * as sqliteVec from 'sqlite-vec';
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors'; 
 import { GoogleGenAI } from '@google/genai';
 import { pipeline } from '@xenova/transformers';
+import path from 'path';
 
 const app = express();
 app.use(cors());
@@ -31,9 +34,42 @@ app.post('/vectorize', async (req, res) => {
   console.log('req.body:', req.body,);
   try {
     let text = req.body.title + " " + req.body.description;
-    const a = await vectorize(text);
-    console.log("Vectorizat cu success");
-    res.json({ vector: a }); // ← wrap in object, not raw array
+    let tip = req.body.ideaType.toLowerCase();
+
+    //1.Vectorizare idee
+    const newVector = await vectorize(text);
+
+    // 2. Load all existing vectors from SQLite and compare
+    const ideas = db.prepare(`SELECT * FROM ../DB/${ideas}`).all();
+    let mostSimilar = null;
+    let highestScore = 0;
+    let scores = [];
+
+    //Intru array punem toate ideile
+    for (const idea of ideas) {
+      const vec = JSON.parse(idea.vector);
+      const score = cosineSimilarity(newVector, vec);
+      scores.push({ idea, score });
+    }
+
+    //Luam din array 3 cele mai asemanatoare
+    const top3 = scores
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+
+    //3 .Salvare idea noua
+    db.prepare(`INSERT INTO ${tip}(title, description, vector) VALUES (?, ?, ?)`)
+    .run(title, description, JSON.stringify(newVector));
+
+    //Raspuns spre front-end
+    res.json({
+      top3: top3.map(entry => ({
+        title: entry.idea.title,
+        description: entry.idea.description,
+        similarityScore: entry.score
+      }))
+    });
+    //res.json({ vector: vectorNou }); // ← wrap in object, not raw array
   } catch (err) {
     console.error('VECTORIZE ERROR:', err); // ← this will show the real problem
     res.status(500).json({ error: err.message });
@@ -62,6 +98,21 @@ app.post('/chat', async (req, res) => {
   });
 
   res.json({ reply: response.text });
+});
+
+//Sorin tu icepi aici
+import { getAll, addLike } from '../DB/sugestii.js';
+
+// Get all sugestii
+app.get('/api/sugestii', (req, res) => {
+  const rows = getAll();
+  res.json(rows);
+});
+
+// Like a sugestie
+app.post('/api/sugestii/:id/like', (req, res) => {
+  addLike(req.params.id);
+  res.json({ success: true });
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));
