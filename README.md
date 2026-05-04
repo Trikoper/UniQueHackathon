@@ -1,16 +1,14 @@
 # Continuarea proiectului
-
-    Acest repositor este versiune de  Hackathon prin care s-a demonstrat valoarea adevarata a proiectului, din aceasta cauza proiectul va
-    fi continuat intr-un repositor nou, pe care-l puteti gasi urmarind acest link https://github.com/Pentru-Studenti/for-students
+Acest repositor este versiune de  Hackathon prin care s-a demonstrat valoarea adevarata a proiectului, 
+din aceasta cauza proiectul va fi continuat intr-un repositor nou, pe care-l puteti gasi urmarind 
+acest link https://github.com/Pentru-Studenti/for-students
 
 # Stackul utilizat
-
-    Better-SQLite si NodeJS (express.js)
+Better-SQLite si NodeJS (express.js)
 
 # Cheile API
-
-    Localizeaza documentul .env_example si redenumestel in .env
-    Inlocuieste continutul dintre ghilimele cu codul la cheia API
+Localizeaza documentul .env_example si redenumestel in .env
+Inlocuieste continutul dintre ghilimele cu codul la cheia API
 
 # Cum lucreaza programul
 
